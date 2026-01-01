@@ -71,6 +71,8 @@ fun VehicleTheme(
             } else{
                 WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
             }
+
+
         }
     }
 
