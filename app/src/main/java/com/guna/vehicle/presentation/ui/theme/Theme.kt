@@ -37,7 +37,7 @@ private val LightColorScheme = lightColorScheme(
     onSurface = Color(0xFF1C1B1F),
     */
 )
-
+@Suppress("DEPRECATION")
 @Composable
 fun VehicleTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
