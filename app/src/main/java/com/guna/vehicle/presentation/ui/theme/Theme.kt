@@ -10,6 +10,7 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -51,16 +52,25 @@ fun VehicleTheme(
         }
 
         darkTheme -> DarkColorScheme
-        else -> DarkColorScheme
+        else -> LightColorScheme
     }
 
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
+            val statusBarDark = Color(0xFF0A1E3F)
+
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            // Force light icons (false) because primary color (Blue) is dark
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false 
+            window.statusBarColor = if (darkTheme) {
+                statusBarDark.toArgb()
+            } else {
+                statusBarDark.toArgb()
+            }
+            if (darkTheme) {
+                WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
+            } else{
+                WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
+            }
         }
     }
 
